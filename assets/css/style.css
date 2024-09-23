@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    background-color: black;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 30px;
+}
+.logo {
+    width: 20vw;
+}
+h1 {
+    color: aliceblue;
+    text-align: center;
+    font-family: "Quicksand", sans-serif;
+}
+.name {
+    color: rgb(228, 3, 115);
+    font-size: 45px;
+}
+
+.assis {
+    color: rgb(3, 228, 209);
+    font-size: 45px;
+}
+.voice {
+    width: 150px;
+    display: none;
+}
+.btn {
+    /* width: 30%; */
+    font-size: 20px;
+    border-radius: 20px;
+    color: white;
+    padding: 10px;
+    font-family: "Quicksand", sans-serif;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    box-shadow:
+        2px 2px 10px rgb(0, 255, 242),
+        2px 2px 10px rgba(235, 10, 168, 0.521);
+    background: linear-gradient(to right, rgb(0, 255, 242), rgba(235, 10, 168, 0.521));
+    transition: all 0.5s;
+}
+.btn:hover {
+    box-shadow:
+        2px 2px 20px rgb(0, 255, 242),
+        2px 2px 20px rgba(235, 10, 168, 0.521);
+}
+@media (min-width: 425px) and (max-width: 855px) {
+    .name {
+        font-size: 38px;
+    }
+    .assis {
+        font-size: 38px;
+    }
+    .btn{
+
+        font-size: 16px;
+    }
+}
+@media (max-width:425px) {
+    .name {
+        font-size: 32px;
+    }
+    .assis {
+        font-size: 32px;
+    }
+}
