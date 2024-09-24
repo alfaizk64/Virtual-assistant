@@ -7,7 +7,8 @@ window.addEventListener("load", () => {
 async function speak(text) {
   const apiKey = "sk_4afa0a280236a08ee155745ba5420610a61bc96a50dac175";
   const url =
-    "https://api.elevenlabs.io/v1/text-to-speech/pMsXgVXv3BLzUgSXRplE";
+  "https://api.elevenlabs.io/v1/text-to-speech/pMsXgVXv3BLzUgSXRplE"
+  ;
   // Prepare the payload
   const payload = {
     text: text,
