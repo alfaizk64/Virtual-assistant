@@ -4,20 +4,72 @@ const voice = document.getElementById("voice")
 window.addEventListener("load", () => {
   greeting();
 });
-function speak(text) {
-  // const text= content.value
+async function speak(text) {
+  const apiKey = 'sk_5cab9c37079e6b25b3e5613ca6e44cccce9c99483d8a18a0'; 
+  const url = 'https://api.elevenlabs.io/v1/text-to-speech/EXAVITQu4vr4xnSDxMaL';
+  // Prepare the payload
+  const payload = {
+    text: text,
+    voice_settings: {
+      stability: 0.5,
+      similarity_boost: 0.75
+    }
+  };
+  
+  try {
+    // Call the 11Labs API
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'xi-api-key': apiKey
+      },
+      body: JSON.stringify(payload)
+    });
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch audio from 11Labs API');
+    }
+
+    const audioBlob = await response.blob();
+    const audioUrl = URL.createObjectURL(audioBlob);
+    
+    // Play the audio
+    const audio = new Audio(audioUrl);
+    audio.play();
+
+    audio.onended = () => {
+      console.log("Finished speaking");
+    };
+
+  } catch (error) {
+    console.error('Error:', error);
+    speakFallback(text); // Fallback to browser TTS if there's an error
+  }
+}
+// Fallback function in case the 11Labs API fails
+function speakFallback(text) {
   const speech = new SpeechSynthesisUtterance(text);
   speech.lang = "hi-IN";
   speech.rate = 0.9;
   speech.pitch = 1;
   speech.volume = 0.9;
-  speech.onend = () => {
-    console.log("Finished speaking");
-  };
-//   window.speechSynthesis.speak(speech);
- window.speechSynthesis.cancel(); 
- window.speechSynthesis.speak(speech);
+  window.speechSynthesis.speak(speech);
 }
+// function speak(text) {
+//   // const text= content.value
+//   const speech = new SpeechSynthesisUtterance(text);
+//   speech.lang = "hi-IN";
+//   speech.rate = 0.9;
+//   speech.pitch = 1;
+//   speech.volume = 0.9;
+//   speech.onend = () => {
+//     console.log("Finished speaking");
+//   };
+// //   window.speechSynthesis.speak(speech);
+//  window.speechSynthesis.cancel(); 
+//  window.speechSynthesis.speak(speech);
+// }
 
 //   textToSpeech('Hello, world!');
 // function speakText(text) {
